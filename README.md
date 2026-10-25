@@ -16,8 +16,7 @@ For the verified numerical environment, install with
 `python -m pip install -e '.[dev]' -c requirements-reproduction.txt`.
 See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the tested data-to-results workflow,
 checkpoint replay commands, and the distinction between the published DRG CUDA fits
-and CPU retraining. The current manuscript combines single-thread CPU DIP fits with
-retained CUDA DRG fits, evaluated at score thresholds 0 and 0.75 respectively.
+and CPU retraining. The current manuscript evaluated at score thresholds 0 and 0.75 respectively.
 
 ## Raw data
 
@@ -132,11 +131,3 @@ sample standard deviation (`ddof=1`) over seeds.
 - `gate_by_seed.csv`, `gate_summary.csv`: the selected DIP 0 / DRG 0.75 policy.
 
 Preparation writes compact model inputs and metadata under `results/processed/`. For DIP, the disease split contains the selected train/test rows and code lists. For DRG, outputs include disease-code and identity-unit splits, a compact disease summary, and split/normalization metadata. Temporary intermediate tables are not part of the public output contract.
-
-## Tests and lint
-
-```bash
-python -m pytest
-ruff check .
-ruff format --check .
-```
