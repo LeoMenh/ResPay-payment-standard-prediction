@@ -1,0 +1,19 @@
+# Generated experiment outputs and local data
+results/
+data/raw/
+
+# Python caches and build artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+
+# Model checkpoints
+checkpoints/
+*.ckpt
+*.pt
+*.pth

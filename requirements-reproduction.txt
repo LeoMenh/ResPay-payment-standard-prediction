@@ -1,0 +1,12 @@
+# Versions used to verify DIP refitting and replay the manuscript checkpoints.
+# Python 3.12.2; the installed PyTorch CUDA build reports 2.9.1+cu128 at runtime.
+# Install a matching PyTorch build separately when reproducing a CUDA fit.
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.6.1
+torch==2.9.1
+xgboost==3.2.0
+openpyxl==3.1.5
+scipy==1.13.1
+joblib==1.4.2
+threadpoolctl==3.5.0
