@@ -25,6 +25,9 @@ dev = [
 [tool.setuptools.packages.find]
 include = ["respay*"]
 
+[tool.setuptools.package-data]
+"respay.data" = ["samples/README.md", "samples/dip/*.csv", "samples/drg/*.xlsx"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"

@@ -18,6 +18,13 @@ DEFAULT_RAW_DATA_PATH_DRG_1_1 = DEFAULT_RAW_DATA_DIR / "2024年1.1版权重费�
 DEFAULT_RAW_DATA_PATH_DRG_2_0 = (
     DEFAULT_RAW_DATA_DIR / "2025年2.0版权重费率表费率（职工11800，居民9279.72）.xlsx"
 )
+SAMPLE_FILENAMES = {
+    DEFAULT_RAW_DATA_PATH_2023.name: "2023年DRG合成数据.xlsx",
+    DEFAULT_RAW_DATA_PATH_2024.name: "2024年DRG合成数据.xlsx",
+    DEFAULT_RAW_DATA_PATH_2025.name: "2025年DRG合成数据.xlsx",
+    DEFAULT_RAW_DATA_PATH_DRG_1_1.name: "2024年DRG合成数据_1.1版权重费率表.xlsx",
+    DEFAULT_RAW_DATA_PATH_DRG_2_0.name: "2025年DRG合成数据_2.0版权重费率表.xlsx",
+}
 
 OUTPUT_ROOT = PROCESSED_DATA_ROOT / "drg_processed"
 DRG_STANDARD_AMOUNT_COLS = [
@@ -228,12 +235,19 @@ def load_case_data(file_path: Path, source_year: int) -> pd.DataFrame:
     return df
 
 
+def _input_path(raw_data_dir: Path, original_name: str) -> Path:
+    """Accept explicitly named synthetic inputs as well as private-data filenames."""
+    original_path = raw_data_dir / original_name
+    sample_path = raw_data_dir / SAMPLE_FILENAMES[original_name]
+    return sample_path if not original_path.exists() and sample_path.exists() else original_path
+
+
 def load_all_case_data(raw_data_dir: Path = DEFAULT_RAW_DATA_DIR) -> pd.DataFrame:
     """Combine annual workbooks and retain cases with valid codes, weights, and versions."""
     parts = [
-        load_case_data(raw_data_dir / DEFAULT_RAW_DATA_PATH_2023.name, 2023),
-        load_case_data(raw_data_dir / DEFAULT_RAW_DATA_PATH_2024.name, 2024),
-        load_case_data(raw_data_dir / DEFAULT_RAW_DATA_PATH_2025.name, 2025),
+        load_case_data(_input_path(raw_data_dir, DEFAULT_RAW_DATA_PATH_2023.name), 2023),
+        load_case_data(_input_path(raw_data_dir, DEFAULT_RAW_DATA_PATH_2024.name), 2024),
+        load_case_data(_input_path(raw_data_dir, DEFAULT_RAW_DATA_PATH_2025.name), 2025),
     ]
     case_df = pd.concat(parts, ignore_index=True)
     case_df = case_df.dropna(subset=["病种编码", "权重", "年份", "DRG版本"]).copy()
@@ -302,8 +316,12 @@ def load_all_standard_tables(raw_data_dir: Path = DEFAULT_RAW_DATA_DIR) -> pd.Da
     """Combine both version-specific standard-payment tables."""
     standard_df = pd.concat(
         [
-            load_drg_1_1_standard_table(raw_data_dir / DEFAULT_RAW_DATA_PATH_DRG_1_1.name),
-            load_drg_2_0_standard_table(raw_data_dir / DEFAULT_RAW_DATA_PATH_DRG_2_0.name),
+            load_drg_1_1_standard_table(
+                _input_path(raw_data_dir, DEFAULT_RAW_DATA_PATH_DRG_1_1.name)
+            ),
+            load_drg_2_0_standard_table(
+                _input_path(raw_data_dir, DEFAULT_RAW_DATA_PATH_DRG_2_0.name)
+            ),
         ],
         ignore_index=True,
     )

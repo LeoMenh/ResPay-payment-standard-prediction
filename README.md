@@ -2,6 +2,12 @@
 
 This repository contains the data preparation, selected models, baselines, and numeric analysis used for the experiments reported in the paper. It does not include plotting scripts or figures.
 
+The hospital data are **not public**. This release includes fully synthetic example
+inputs so users can run the complete workflow without private data. The examples
+preserve the required column labels and file layouts; all record values, group
+codes/names, features, weights, and numerical targets are invented. Example output
+is for demonstrating execution, **not reproducing the paper's numerical results**.
+
 ## Install
 
 Use Python 3.10 or newer. From the repository root, install the package and development tools:
@@ -12,13 +18,46 @@ python -m pip install -e '.[dev]'
 
 The project dependencies include PyTorch, pandas, NumPy, scikit-learn, XGBoost, and openpyxl. Use a PyTorch build suitable for the machine if GPU execution is required; the default run uses CUDA when available and CPU otherwise.
 
-For the verified numerical environment, install with
+For the original private-data numerical environment, install with
 `python -m pip install -e '.[dev]' -c requirements-reproduction.txt`.
 See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the tested data-to-results workflow,
 checkpoint replay commands, and the distinction between the published DRG CUDA fits
 and CPU retraining. The current manuscript evaluated at score thresholds 0 and 0.75 respectively.
 
-## Raw data
+## Run with the public example data
+
+No original hospital data or saved model weights are needed. From this directory:
+
+```bash
+python -m respay.cli.run_all \
+  --dip-raw-path respay/data/samples/dip/2023-2024年DIP合成数据.csv \
+  --drg-raw-dir respay/data/samples/drg \
+  --output-root results/sample \
+  --seeds 42 43 --epochs 3 --device cpu --threads 1
+```
+
+This runs both data preparation pipelines, residual/direct-target ResPay training,
+all four baselines, and all numeric analyses. Two seeds allow meaningful sample-SD
+output while keeping the demonstration small. Tables appear in
+`results/sample/tables/`; processed inputs, predictions, and checkpoints stay under
+`results/sample/`, separate from any existing private-data results. The baseline
+settings remain unchanged, so the learned baselines may take longer than the
+three-epoch neural demo and may report non-convergence on synthetic data.
+
+The six input files are under [`respay/data/samples/`](respay/data/samples/README.md).
+They are included in package distributions. To regenerate them from scratch:
+
+```bash
+python -m respay.data.sample_data
+```
+
+The generator never reads private data. No patient names, identifiers, real disease
+codes, or hospital statistics are retained. Years, column labels, insurance
+categories, and required workbook names/sheet layouts are input-format conventions.
+Explicit relative paths above assume this directory as the working directory;
+from elsewhere, pass absolute paths to the examples.
+
+## Private raw data (optional)
 
 Raw source data is private and is not included in this repository. Place the files locally using this layout, or pass their locations with the command-line options below:
 
@@ -36,7 +75,7 @@ data/raw/
 
 The DIP input is a CSV containing the case-level records for the 2023-to-2024 disease experiment. The DRG directory must contain the three annual case workbooks and both version-specific rate tables. `data/raw/` is ignored by Git; do not add source workbooks or derived private case records to version control.
 
-## Full experiment
+## Full experiment with private data
 
 Run the preparation, residual ResPay model, direct-target ablation, four baselines, and numeric result analysis in sequence:
 

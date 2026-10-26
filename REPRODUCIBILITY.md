@@ -1,5 +1,11 @@
 # Reproducing the manuscript experiments
 
+The commands and numerical checks in this document concern the original private
+hospital data, which are not released. Public users should follow the synthetic
+example workflow in [README.md](README.md#run-with-the-public-example-data).
+The bundled inputs demonstrate execution only and cannot reproduce manuscript
+metrics. No private input files or trained weights are needed for that workflow.
+
 Verified on 25 October 2026 using this standalone package. The manuscript was left
 unchanged. Raw hospital files and trained weights are local artifacts, excluded from
 Git. Reproducing the published numbers requires access to those files.
