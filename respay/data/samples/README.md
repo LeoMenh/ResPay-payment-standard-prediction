@@ -1,15 +1,14 @@
 # Synthetic example inputs
 
-These public files are generated entirely by `respay.data.sample_data`. No private
-file is read, sampled, masked, or copied to create them. Every disease code, group
-name, case date, feature value, weight, and payment amount is invented. Column
+These public files are generated entirely from scratch by `respay.data.sample_data`.
+Every disease code, group name, case date, feature value, weight, and payment amount
+is invented. Column
 labels, insurance category labels, and required Excel layouts follow
 the input readers. Years and version labels are fixed format conventions.
 
 There are 60 synthetic disease groups in each task. DIP has 420 records across
 2023 and 2024. DRG has 360 records in each of 2023/2024 and 720 records in 2025,
-including both DRG versions, plus two 60-group rate tables. No names, patient
-identifiers, real group codes, or hospital-level summary statistics are included.
+including both DRG versions, plus two 60-group rate tables.
 
 The files are named by year and task:
 
