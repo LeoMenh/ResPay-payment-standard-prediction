@@ -57,24 +57,6 @@ categories, and required workbook names/sheet layouts are input-format conventio
 Explicit relative paths above assume this directory as the working directory;
 from elsewhere, pass absolute paths to the examples.
 
-## Private raw data (optional)
-
-Raw source data is private and is not included in this repository. Place the files locally using this layout, or pass their locations with the command-line options below:
-
-```text
-data/raw/
-├── dip/
-│   └── df_sample-1.csv
-└── drg/
-    ├── 2023年1-12月国新分组数据.xlsx
-    ├── 2024年1-12月国新分组数据.xlsx
-    ├── 2025年1-12月国新分组数据.xlsx
-    ├── 2024年1.1版权重费率表.xlsx
-    └── 2025年2.0版权重费率表费率（职工11800，居民9279.72）.xlsx
-```
-
-The DIP input is a CSV containing the case-level records for the 2023-to-2024 disease experiment. The DRG directory must contain the three annual case workbooks and both version-specific rate tables. `data/raw/` is ignored by Git; do not add source workbooks or derived private case records to version control.
-
 ## Full experiment with private data
 
 Run the preparation, residual ResPay model, direct-target ablation, four baselines, and numeric result analysis in sequence:
