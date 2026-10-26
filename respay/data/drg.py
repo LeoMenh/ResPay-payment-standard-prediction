@@ -19,11 +19,11 @@ DEFAULT_RAW_DATA_PATH_DRG_2_0 = (
     DEFAULT_RAW_DATA_DIR / "2025年2.0版权重费率表费率（职工11800，居民9279.72）.xlsx"
 )
 SAMPLE_FILENAMES = {
-    DEFAULT_RAW_DATA_PATH_2023.name: "2023年DRG合成数据.xlsx",
-    DEFAULT_RAW_DATA_PATH_2024.name: "2024年DRG合成数据.xlsx",
-    DEFAULT_RAW_DATA_PATH_2025.name: "2025年DRG合成数据.xlsx",
-    DEFAULT_RAW_DATA_PATH_DRG_1_1.name: "2024年DRG合成数据_1.1版权重费率表.xlsx",
-    DEFAULT_RAW_DATA_PATH_DRG_2_0.name: "2025年DRG合成数据_2.0版权重费率表.xlsx",
+    DEFAULT_RAW_DATA_PATH_2023.name: "2023_DRG_synthetic_data.xlsx",
+    DEFAULT_RAW_DATA_PATH_2024.name: "2024_DRG_synthetic_data.xlsx",
+    DEFAULT_RAW_DATA_PATH_2025.name: "2025_DRG_synthetic_data.xlsx",
+    DEFAULT_RAW_DATA_PATH_DRG_1_1.name: "2024_DRG_synthetic_weights_rates_v1.1.xlsx",
+    DEFAULT_RAW_DATA_PATH_DRG_2_0.name: "2025_DRG_synthetic_weights_rates_v2.0.xlsx",
 }
 
 OUTPUT_ROOT = PROCESSED_DATA_ROOT / "drg_processed"

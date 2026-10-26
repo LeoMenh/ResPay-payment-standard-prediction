@@ -12,12 +12,12 @@ including both DRG versions, plus two 60-group rate tables.
 
 The files are named by year and task:
 
-- `dip/2023-2024年DIP合成数据.csv` (both years are needed for the target transition)
-- `drg/2023年DRG合成数据.xlsx`
-- `drg/2024年DRG合成数据.xlsx`
-- `drg/2025年DRG合成数据.xlsx`
-- `drg/2024年DRG合成数据_1.1版权重费率表.xlsx`
-- `drg/2025年DRG合成数据_2.0版权重费率表.xlsx`
+- `dip/2023-2024_DIP_synthetic_data.csv` (both years are needed for the target transition)
+- `drg/2023_DRG_synthetic_data.xlsx`
+- `drg/2024_DRG_synthetic_data.xlsx`
+- `drg/2025_DRG_synthetic_data.xlsx`
+- `drg/2024_DRG_synthetic_weights_rates_v1.1.xlsx`
+- `drg/2025_DRG_synthetic_weights_rates_v2.0.xlsx`
 
 All three sample base rates (9000, 7000, 8000) are invented.
 
@@ -25,7 +25,7 @@ From the ResPay root, run the complete demonstration:
 
 ```bash
 python -m respay.cli.run_all \
-  --dip-raw-path respay/data/samples/dip/2023-2024年DIP合成数据.csv \
+  --dip-raw-path respay/data/samples/dip/2023-2024_DIP_synthetic_data.csv \
   --drg-raw-dir respay/data/samples/drg \
   --output-root results/sample --seeds 42 43 --epochs 3 --device cpu --threads 1
 ```

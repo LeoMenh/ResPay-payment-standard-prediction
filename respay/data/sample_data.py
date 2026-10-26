@@ -56,7 +56,7 @@ def generate_sample_data(output_root: str | Path = SAMPLE_DATA_ROOT) -> list[Pat
                         **features,
                     }
                 )
-    dip_path = dip_root / "2023-2024年DIP合成数据.csv"
+    dip_path = dip_root / "2023-2024_DIP_synthetic_data.csv"
     pd.DataFrame(dip_rows).to_csv(dip_path, index=False, encoding="utf-8-sig")
     paths = [dip_path]
 
@@ -90,7 +90,7 @@ def generate_sample_data(output_root: str | Path = SAMPLE_DATA_ROOT) -> list[Pat
                                 **costs,
                             }
                         )
-        path = drg_root / f"{year}年DRG合成数据.xlsx"
+        path = drg_root / f"{year}_DRG_synthetic_data.xlsx"
         pd.DataFrame(rows).to_excel(path, sheet_name="合成病例", index=False)
         paths.append(path)
 

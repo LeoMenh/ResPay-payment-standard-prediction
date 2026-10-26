@@ -23,7 +23,7 @@ From the repository root:
 
 ```bash
 python -m respay.cli.run_all \
-  --dip-raw-path respay/data/samples/dip/2023-2024年DIP合成数据.csv \
+  --dip-raw-path respay/data/samples/dip/2023-2024_DIP_synthetic_data.csv \
   --drg-raw-dir respay/data/samples/drg \
   --output-root results/sample \
   --seeds 42 43 --epochs 3 --device cpu --threads 1
@@ -61,7 +61,7 @@ Prepare and export fixed train/test cohorts:
 ```bash
 python -m respay.cli.prepare_data \
   --tasks dip_disease drg_identity_amount \
-  --dip-raw-path respay/data/samples/dip/2023-2024年DIP合成数据.csv \
+  --dip-raw-path respay/data/samples/dip/2023-2024_DIP_synthetic_data.csv \
   --drg-raw-dir respay/data/samples/drg \
   --output-root results/sample/processed
 ```
